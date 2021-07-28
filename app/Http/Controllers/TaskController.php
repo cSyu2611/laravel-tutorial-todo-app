@@ -27,6 +27,7 @@ class TaskController extends Controller
         return view('tasks/index', [
             'folders' => $folders,
             'current_folder_id' => $folder->id,
+            'folder' => $folder,
             'tasks' => $tasks,
         ]);
     }
@@ -73,6 +74,7 @@ class TaskController extends Controller
         $this->checkRelation($folder, $task);
         return view('tasks/edit', [
             'task' => $task,
+            'folder' => $folder
         ]);
     }
 
@@ -92,7 +94,7 @@ class TaskController extends Controller
         $task->save();
 
         return redirect()->route('tasks.index', [
-            'id' => $task->folder_id,
+            'folder' => $folder,
         ]);
     }
 

@@ -15,9 +15,9 @@
           </div>
           <div class="list-group">
             <!-- view('tasks/index', { 'folders' => $folders, 'current_folder_id' => $id })で呼ばれるので -->
-            @foreach($folders as $folder)
-              <a href="{{ route('tasks.index', ['folder' => $folder]) }}" class="list-group-item {{ $current_folder_id === $folder->id ? 'active' : '' }}">
-                {{ $folder->title }}
+            @foreach($folders as $f)
+              <a href="{{ route('tasks.index', ['folder' => $f]) }}" class="list-group-item {{ $current_folder_id === $f->id ? 'active' : '' }}">
+                {{ $f->title }}
               </a>
             @endforeach
           </div>
@@ -51,7 +51,7 @@
           </td>
           <td>{{ $task->formatted_due_date }}</td>
           <td>
-          <a href="{{ route('tasks.edit', ['id' => $task->folder_id, 'task_id' => $task->id]) }}">
+          <a href="{{ route('tasks.edit', ['folder' => $folder, 'task' => $task]) }}">
   編集
 </a>
           </td>
